@@ -1,47 +1,23 @@
 <?php
-/**
- * Copyright (c) 2017 - present
- * LaravelGoogleRecaptcha - ReCaptchaConfigurationTest.php
- * author: Roberto Belotti - roby.belotti@gmail.com
- * web : robertobelotti.com, github.com/biscolab
- * Initial version created on: 13/2/2019
- * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
- */
 
-namespace Biscolab\ReCaptcha\Tests;
+namespace BlissJaspis\ReCaptcha\Tests;
 
-use Biscolab\ReCaptcha\ReCaptchaBuilder;
-use Biscolab\ReCaptcha\ReCaptchaBuilderV2;
+use BlissJaspis\ReCaptcha\ReCaptchaBuilder;
+use BlissJaspis\ReCaptcha\ReCaptchaBuilderV2;
 
-/**
- * Class ReCaptchaConfigurationTest
- * @package Biscolab\ReCaptcha\Tests
- */
 class ReCaptchaConfigurationTest extends TestCase
 {
 
-	/**
-	 * @var ReCaptchaBuilder
-	 */
 	protected $recaptcha;
 
-	/**
-	 * @test
-	 */
 	public function testGetApiSiteKey() {
 		$this->assertEquals("api_site_key", $this->recaptcha->getApiSiteKey());
 	}
 
-	/**
-	 * @test
-	 */
 	public function testGetApiSecretKey() {
 		$this->assertEquals("api_secret_key", $this->recaptcha->getApiSecretKey());
 	}
 
-	/**
-	 * @test
-	 */
 	public function testSkipIpWhiteListIsArray()
 	{
 
@@ -53,22 +29,12 @@ class ReCaptchaConfigurationTest extends TestCase
 		$this->assertEquals('10.0.0.2', $ip_whitelist[1]);
 	}
 
-	/**
-	 * @test
-	 */
 	public function testCurlTimeoutIsSet()
 	{
 
 		$this->assertEquals(3, $this->recaptcha->getCurlTimeout());
 	}
 
-	/**
-	 * Define environment setup.
-	 *
-	 * @param  \Illuminate\Foundation\Application $app
-	 *
-	 * @return void
-	 */
 	protected function getEnvironmentSetUp($app)
 	{
 
@@ -78,9 +44,6 @@ class ReCaptchaConfigurationTest extends TestCase
 		$app['config']->set('recaptcha.curl_timeout', 3);
 	}
 
-	/**
-	 * Setup the test environment.
-	 */
 	protected function setUp(): void
 	{
 

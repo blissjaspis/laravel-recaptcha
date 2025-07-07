@@ -1,28 +1,15 @@
 <?php
 
-/**
- * Copyright (c) 2017 - present
- * LaravelGoogleRecaptcha - ReCaptchaHelpersV2Test.php
- * author: Roberto Belotti - roby.belotti@gmail.com
- * web : robertobelotti.com, github.com/biscolab
- * Initial version created on: 8/8/2019
- * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
- */
+namespace BlissJaspis\ReCaptcha\Tests;
 
-namespace Biscolab\ReCaptcha\Tests;
-
-use Biscolab\ReCaptcha\Facades\ReCaptcha;
-use Biscolab\ReCaptcha\ReCaptchaBuilderV2;
+use BlissJaspis\ReCaptcha\Facades\ReCaptcha;
+use BlissJaspis\ReCaptcha\ReCaptchaBuilderV2;
 
 class ReCaptchaHelpersV2Test extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function testHtmlScriptTagJsApiCalledByFacade()
     {
-
         ReCaptcha::shouldReceive('htmlScriptTagJsApi')
             ->once()
             ->with(["key" => "val"]);
@@ -30,24 +17,16 @@ class ReCaptchaHelpersV2Test extends TestCase
         htmlScriptTagJsApi(["key" => "val"]);
     }
 
-    /**
-     * @test
-     */
     public function testHtmlFormSnippetCalledByFacade()
     {
-
         ReCaptcha::shouldReceive('htmlFormSnippet')
             ->once();
 
         htmlFormSnippet();
     }
 
-    /**
-     * @test
-     */
     public function testTagAttributes()
     {
-
         $recaptcha = \recaptcha();
 
         $tag_attributes = $recaptcha->getTagAttributes();
@@ -69,27 +48,17 @@ class ReCaptchaHelpersV2Test extends TestCase
         $this->assertEquals($tag_attributes['error-callback'], 'errorCallbackFunction');
     }
 
-    /**
-     * @test
-     */
     public function testExpectReCaptchaInstanceOfReCaptchaBuilderV2()
     {
-
         $this->assertInstanceOf(ReCaptchaBuilderV2::class, \recaptcha());
     }
 
-    /**
-     * @expectedException     \Error
-     */
     public function testExpectExceptionWhenGetFormIdFunctionIsCalled()
     {
         $this->expectException('\Error');
         getFormId();
     }
 
-    /**
-     * @test
-     */
     public function testHtmlFormSnippet()
     {
 
@@ -100,12 +69,8 @@ class ReCaptchaHelpersV2Test extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
     public function testHtmlFormSnippetOverridesDefaultAttributes()
-    {
-
+    {   
         $html_snippet = \recaptcha()->htmlFormSnippet([
             "theme" => "light",
             "size" => "normal",
@@ -121,9 +86,6 @@ class ReCaptchaHelpersV2Test extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
     public function testCleanAttributesReturnsOnlyAllowedAttributes()
     {
         $attributes = ReCaptchaBuilderV2::cleanAttributes([
@@ -144,9 +106,6 @@ class ReCaptchaHelpersV2Test extends TestCase
         $this->assertArrayNotHasKey("not-allowed-attribute", $attributes);
     }
 
-    /**
-     * @test
-     */
     public function testHtmlFormSnippetKeepsDefaultConfigValuesUnlessOtherwiseStated()
     {
         $html_snippet = \recaptcha()->htmlFormSnippet([
@@ -160,16 +119,8 @@ class ReCaptchaHelpersV2Test extends TestCase
         );
     }
 
-    /**
-     * Define environment setup.
-     *
-     * @param  \Illuminate\Foundation\Application $app
-     *
-     * @return void
-     */
     protected function getEnvironmentSetUp($app)
     {
-
         $app['config']->set('recaptcha.api_site_key', 'api_site_key');
         $app['config']->set('recaptcha.version', 'v2');
         $app['config']->set('recaptcha.tag_attributes', [

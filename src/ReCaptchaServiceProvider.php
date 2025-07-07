@@ -1,40 +1,18 @@
 <?php
 
-/**
- * Copyright (c) 2017 - present
- * LaravelGoogleRecaptcha - ReCaptchaServiceProvider.php
- * author: Roberto Belotti - roby.belotti@gmail.com
- * web : robertobelotti.com, github.com/biscolab
- * Initial version created on: 12/9/2018
- * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
- */
-
-namespace Biscolab\ReCaptcha;
+namespace BlissJaspis\ReCaptcha;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
-/**
- * Class ReCaptchaServiceProvider
- * @package Biscolab\ReCaptcha
- */
 class ReCaptchaServiceProvider extends ServiceProvider
 {
 
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
     protected $defer = false;
 
-    /**
-     *
-     */
     public function boot()
     {
-
         $this->addValidationRule();
         $this->registerRoutes();
         $this->publishes([
@@ -42,9 +20,6 @@ class ReCaptchaServiceProvider extends ServiceProvider
         ], 'config');
     }
 
-    /**
-     * Extends Validator to include a recaptcha type
-     */
     public function addValidationRule()
     {
         $message = null;
@@ -53,19 +28,12 @@ class ReCaptchaServiceProvider extends ServiceProvider
             $message = trans(config('recaptcha.error_message_key'));
         }
         Validator::extendImplicit(recaptchaRuleName(), function ($attribute, $value) {
-
             return app('recaptcha')->validate($value);
         }, $message);
     }
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
     public function register()
     {
-
         $this->mergeConfigFrom(
             __DIR__ . '/../config/recaptcha.php',
             'recaptcha'
@@ -74,41 +42,23 @@ class ReCaptchaServiceProvider extends ServiceProvider
         $this->registerReCaptchaBuilder();
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
     public function provides(): array
     {
-
         return ['recaptcha'];
     }
 
-    /**
-     * @return ReCaptchaServiceProvider
-     *
-     * @since v3.4.1
-     */
     protected function registerRoutes(): ReCaptchaServiceProvider
     {
-
         Route::get(
-            config('recaptcha.default_validation_route', 'biscolab-recaptcha/validate'),
-            ['uses' => 'Biscolab\ReCaptcha\Controllers\ReCaptchaController@validateV3']
+            config('recaptcha.default_validation_route', 'blissjaspis-recaptcha/validate'),
+            ['uses' => 'BlissJaspis\ReCaptcha\Controllers\ReCaptchaController@validateV3']
         )->middleware('web');
 
         return $this;
     }
 
-    /**
-     * Register the HTML builder instance.
-     *
-     * @return void
-     */
     protected function registerReCaptchaBuilder()
     {
-
         $this->app->singleton('recaptcha', function ($app) {
 
             $recaptcha_class = '';

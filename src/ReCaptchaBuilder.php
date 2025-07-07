@@ -1,26 +1,12 @@
 <?php
 
-/**
- * Copyright (c) 2017 - present
- * LaravelGoogleRecaptcha - ReCaptchaBuilder.php
- * author: Roberto Belotti - roby.belotti@gmail.com
- * web : robertobelotti.com, github.com/biscolab
- * Initial version created on: 12/9/2018
- * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
- */
-
-namespace Biscolab\ReCaptcha;
+namespace BlissJaspis\ReCaptcha;
 
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\IpUtils;
 
-/**
- * Class ReCaptchaBuilder
- * @package Biscolab\ReCaptcha
- */
 class ReCaptchaBuilder
 {
-
     /**
      * @var string
      */

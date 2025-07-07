@@ -1,27 +1,14 @@
 <?php
 
-/**
- * Copyright (c) 2017 - present
- * LaravelGoogleRecaptcha - ReCaptchaHelpersV2ExplicitTest.php
- * author: Roberto Belotti - roby.belotti@gmail.com
- * web : robertobelotti.com, github.com/biscolab
- * Initial version created on: 2/9/2019
- * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
- */
+namespace BlissJaspis\ReCaptcha\Tests;
 
-namespace Biscolab\ReCaptcha\Tests;
-
-use Biscolab\ReCaptcha\ReCaptchaBuilderV2;
+use BlissJaspis\ReCaptcha\ReCaptchaBuilderV2;
 
 class ReCaptchaHelpersV2ExplicitTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function testGetOnLoadCallbackFunction()
     {
-
         $recaptcha = \recaptcha();
         /** @scrutinizer ignore-call */
         $callback = $recaptcha->getOnLoadCallback();
@@ -32,12 +19,8 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
     public function testHtmlScriptTagJsApiHasJavascriptRenderFunction()
     {
-
         $html = htmlScriptTagJsApi();
 
         $this->assertEquals(
@@ -46,12 +29,8 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
     public function testTagAttributes()
     {
-
         $recaptcha = \recaptcha();
         /** @scrutinizer ignore-call */
         $tag_attributes = $recaptcha->getTagAttributes();
@@ -73,21 +52,13 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
         $this->assertEquals($tag_attributes['error-callback'], 'errorCallbackFunction');
     }
 
-    /**
-     * @test
-     */
     public function testExpectReCaptchaInstanceOfReCaptchaBuilderV2()
     {
-
         $this->assertInstanceOf(ReCaptchaBuilderV2::class, \recaptcha());
     }
 
-    /**
-     * @test
-     */
     public function testHtmlFormSnippet()
     {
-
         /** @scrutinizer ignore-call */
         $html_snippet = \recaptcha()->htmlFormSnippet();
         $this->assertEquals(
@@ -96,16 +67,8 @@ class ReCaptchaHelpersV2ExplicitTest extends TestCase
         );
     }
 
-    /**
-     * Define environment setup.
-     *
-     * @param  \Illuminate\Foundation\Application $app
-     *
-     * @return void
-     */
     protected function getEnvironmentSetUp($app)
     {
-
         $app['config']->set('recaptcha.api_site_key', 'api_site_key');
         $app['config']->set('recaptcha.version', 'v2');
         $app['config']->set('recaptcha.explicit', true);

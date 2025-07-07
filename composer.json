@@ -1,5 +1,5 @@
 {
-    "name": "biscolab/laravel-recaptcha",
+    "name": "blissjaspis/laravel-recaptcha",
     "description": "Simple and painless Google reCAPTCHA package for Laravel framework",
     "license": "MIT",
     "type": "library",
@@ -9,27 +9,33 @@
         "laravel",
         "validation"
     ],
-    "homepage": "https://biscolab.com/laravel-recaptcha",
+    "homepage": "https://github.com/blissjaspis/laravel-recaptcha",
     "authors": [
         {
             "name": "Roberto Belotti",
             "email": "roby.belotti@gmail.com",
             "homepage": "https://biscolab.com",
             "role": "Developer"
+        },
+        {
+            "name": "Bliss Jaspis",
+            "email": "bliss@jaspis.me",
+            "homepage": "https://bliss.jaspis.me",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
-        "illuminate/routing": "^7.0|^8.0|^9.0|^10.0|^11.0",
-        "illuminate/support": "^7.0|^8.0|^9.0|^10.0|^11.0"
+        "php": "^8.1",
+        "illuminate/routing": "^10.0|^11.0|^12.0",
+        "illuminate/support": "^10.0|^11.0|^12.0"
     },
     "require-dev": {
-        "orchestra/testbench": "5.*|6.*|^7.0|^8.0|^9.0",
-        "phpunit/phpunit": "^9.1|^10.5"
+        "orchestra/testbench": "^10.0|^11.0|^12.0",
+        "phpunit/phpunit": "^10.5|^11.0|^12.0"
     },
     "autoload": {
         "psr-4": {
-            "Biscolab\\ReCaptcha\\": "src/"
+            "BlissJaspis\\ReCaptcha\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -37,22 +43,19 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Biscolab\\ReCaptcha\\Tests\\": "tests/"
+            "BlissJaspis\\ReCaptcha\\Tests\\": "tests/"
         }
     },
     "scripts": {
         "test": "vendor/bin/phpunit --colors=always"
     },
-    "suggest": {
-        "biscolab/laravel-authlog": "It allows to handle logged-in users and force log-out if needed"
-    },
     "extra": {
         "laravel": {
             "providers": [
-                "Biscolab\\ReCaptcha\\ReCaptchaServiceProvider"
+                "BlissJaspis\\ReCaptcha\\ReCaptchaServiceProvider"
             ],
             "aliases": {
-                "ReCaptcha": "Biscolab\\ReCaptcha\\Facades\\ReCaptcha"
+                "ReCaptcha": "BlissJaspis\\ReCaptcha\\Facades\\ReCaptcha"
             }
         }
     }
